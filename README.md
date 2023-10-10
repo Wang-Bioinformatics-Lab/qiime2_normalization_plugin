@@ -16,7 +16,7 @@ python setup.py install
 To run the plugin and generate an normalized file:
 
 ```
-qiime normalization-plugin normalize-function   --i-input-artifact data/test_otu_table.transpose.qza --o-output-artifact data/output.qza
+qiime normalization-plugin normalize-function   --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
 ```
 
 ## Test

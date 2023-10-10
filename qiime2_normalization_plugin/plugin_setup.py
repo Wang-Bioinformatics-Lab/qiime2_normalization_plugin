@@ -2,7 +2,7 @@ import qiime2
 import biom
 import qiime2.plugin
 import pandas as pd
-from q2_types.feature_table import FeatureTable, RelativeFrequency
+from q2_types.feature_table import FeatureTable, RelativeFrequency, Frequency
 
 
 def normalize_function(input_artifact: biom.Table) -> biom.Table:
@@ -22,7 +22,7 @@ plugin = qiime2.plugin.Plugin(
 
 plugin.methods.register_function(
     function=normalize_function,
-    inputs={'input_artifact': FeatureTable[RelativeFrequency]},
+    inputs={'input_artifact': FeatureTable[Frequency]},
     parameters={},  # Add parameters if necessary
     outputs=[('output_artifact', FeatureTable[RelativeFrequency])],
     output_descriptions={
