@@ -6,7 +6,11 @@ If you have already build this plugin and what to update the plugin, run:
  qiime dev refresh-cache
 ```
 
-Go to the roo folder.
+Go to the root folder.
+First, install the plugin:
+```
+ pip install -e .
+```
 
 Then you can build the plugin with 
 ```
