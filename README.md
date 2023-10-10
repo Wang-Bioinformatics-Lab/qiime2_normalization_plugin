@@ -26,7 +26,7 @@ Now you should have a file output.qza in ./data
 
 You need to unzip the output.qza file, and get a folder with a lot of numbers and letters.
 
-Go to that folder and go to data folder in it.
+Go to that folder and go to data folder in it, you should see a file names feature-table.biom.
 
 Use this command to convert the biom file:
 ```
