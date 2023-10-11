@@ -3,11 +3,18 @@ import biom
 import qiime2.plugin
 import pandas as pd
 from q2_types.feature_table import FeatureTable, RelativeFrequency, Frequency
+from scipy.linalg import pinv, svd
+from pynmranalysis.normalization import PQN_normalization
 
 
-def normalize_function(input_artifact: biom.Table) -> biom.Table:
-
-    table_normalized = input_artifact.norm(axis="sample", inplace=False)
+def normalize_function(input_artifact: biom.Table, option: int = 1) -> biom.Table:
+    if option == 1:
+        table_normalized = input_artifact.norm(axis="sample", inplace=False)
+    elif option == 2:
+        df = input_artifact.to_dataframe(dense=True)
+        normalized = PQN_normalization(df ,ref_norm = "median" , verbose=False) 
+        table_normalized = biom.Table(normalized.values, observation_ids=normalized.index.tolist(), sample_ids=normalized.columns.tolist())
+    
 
     return table_normalized
 
@@ -23,7 +30,7 @@ plugin = qiime2.plugin.Plugin(
 plugin.methods.register_function(
     function=normalize_function,
     inputs={'input_artifact': FeatureTable[Frequency]},
-    parameters={},  # Add parameters if necessary
+    parameters={'option': qiime2.plugin.Int},  # Add parameters if necessary
     outputs=[('output_artifact', FeatureTable[RelativeFrequency])],
     output_descriptions={
         'output_artifact': 'Description of the output artifact.'

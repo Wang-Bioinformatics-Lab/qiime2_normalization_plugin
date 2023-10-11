@@ -1,6 +1,13 @@
 
 
+## Env
+Besides qiime2, you may want to install scikit-learn
+```
+pip install --upgrade scikit-learn
+```
+
 ## Build and run
+
 If you have already build this plugin and what to update the plugin, run:
 ```
  qiime dev refresh-cache
@@ -22,7 +29,10 @@ To run the plugin and generate an normalized file:
 ```
 qiime normalization-plugin normalize-function   --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
 ```
-
+Optionaly, if you want to use PQN_normalization:
+```
+qiime normalization-plugin normalize-function   --i-input-artifact data/qiime_table.qza --p-option 2 --o-output-artifact data/output.qza
+```
 ## Test
 
 
@@ -36,5 +46,7 @@ Use this command to convert the biom file:
 ```
 biom convert -i feature-table.biom -o feature-table.txt  --to-tsv
 ```
+
+
 
 open feature-table.txt and check if it has been normalized.
