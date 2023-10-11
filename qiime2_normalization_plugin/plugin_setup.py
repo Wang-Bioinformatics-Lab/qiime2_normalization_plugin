@@ -7,12 +7,24 @@ from scipy.linalg import pinv, svd
 from pynmranalysis.normalization import PQN_normalization
 
 
-def normalize_function(input_artifact: biom.Table) -> biom.Table:
+def normalize_relativefrequency_function(input_artifact: biom.Table) -> biom.Table:
     table_normalized = input_artifact.norm(axis="sample", inplace=False)
 
     return table_normalized
 
-def PQN_normalize_function(input_artifact: biom.Table) -> biom.Table:
+def normalize_frequency_function(input_artifact: biom.Table) -> biom.Table:
+    table_normalized = input_artifact.norm(axis="sample", inplace=False)
+
+    return table_normalized
+
+def PQN_normalize_relativefrequency_function(input_artifact: biom.Table) -> biom.Table:
+    df = input_artifact.to_dataframe(dense=True)
+    normalized = PQN_normalization(df ,ref_norm = "median" , verbose=False) 
+    table_normalized = biom.Table(normalized.values, observation_ids=normalized.index.tolist(), sample_ids=normalized.columns.tolist())
+    
+    return table_normalized
+
+def PQN_normalize_frequency_function(input_artifact: biom.Table) -> biom.Table:
     df = input_artifact.to_dataframe(dense=True)
     normalized = PQN_normalization(df ,ref_norm = "median" , verbose=False) 
     table_normalized = biom.Table(normalized.values, observation_ids=normalized.index.tolist(), sample_ids=normalized.columns.tolist())
@@ -28,8 +40,11 @@ plugin = qiime2.plugin.Plugin(
     short_description='Plugin for qiime2_normalization_plugin analysis.',
 )
 
+
+# ---- register ---------
+
 plugin.methods.register_function(
-    function=normalize_function,
+    function=normalize_relativefrequency_function,
     inputs={'input_artifact': FeatureTable[Frequency]},
     parameters={},  # Add parameters if necessary
     outputs=[('output_artifact', FeatureTable[RelativeFrequency])],
@@ -41,7 +56,31 @@ plugin.methods.register_function(
 )
 
 plugin.methods.register_function(
-    function=PQN_normalize_function,
+    function=normalize_frequency_function,
+    inputs={'input_artifact': FeatureTable[Frequency]},
+    parameters={},  # Add parameters if necessary
+    outputs=[('output_artifact', FeatureTable[Frequency])],
+    output_descriptions={
+        'output_artifact': 'Description of the output artifact.'
+    },
+    name='dummy-function',
+    description='Do normalization to a qza file.',
+)
+
+plugin.methods.register_function(
+    function=PQN_normalize_relativefrequency_function,
+    inputs={'input_artifact': FeatureTable[Frequency]},
+    parameters={},  # Add parameters if necessary
+    outputs=[('output_artifact', FeatureTable[RelativeFrequency])],
+    output_descriptions={
+        'output_artifact': 'FeatureTable[Frequency])].'
+    },
+    name='dummy-function',
+    description='Do PQN normalization to a qza file.',
+)
+
+plugin.methods.register_function(
+    function=PQN_normalize_frequency_function,
     inputs={'input_artifact': FeatureTable[Frequency]},
     parameters={},  # Add parameters if necessary
     outputs=[('output_artifact', FeatureTable[Frequency])],
@@ -51,3 +90,4 @@ plugin.methods.register_function(
     name='dummy-function',
     description='Do PQN normalization to a qza file.',
 )
+
