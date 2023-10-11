@@ -36,9 +36,9 @@ qiime normalization-plugin PQN-normalize-function --i-input-artifact data/qiime_
 ## Test
 
 
-Now you should have a file output.qza in ./data
+Now you should have a file relative_output.qza for RELATIVEFREQUENCY and frequency_output.qza for FREQUENCY in ./data
 
-You need to unzip the output.qza file, and get a folder with a lot of numbers and letters.
+You need to unzip the thes *output.qza file, and get a folder with a lot of numbers and letters.
 
 Go to that folder and go to data folder in it, you should see a file names feature-table.biom.
 
