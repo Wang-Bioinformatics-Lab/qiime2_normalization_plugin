@@ -27,11 +27,11 @@ python setup.py install
 To run the plugin and generate an normalized file:
 
 ```
-qiime normalization-plugin normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
+qiime normalization-plugin normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact-relative data/relative_output.qza --o-output-artifact-frequency data/frequency_output.qza
 ```
 Optionaly, if you want to use PQN_normalization:
 ```
-qiime normalization-plugin PQN-normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
+qiime normalization-plugin PQN-normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact-relative data/relative_output.qza --o-output-artifact-frequency data/frequency_output.qza
 ```
 ## Test
 
