@@ -27,8 +27,7 @@ python setup.py install
 To run the plugin and generate an normalized file with RELATIVEFREQUENCY type:
 
 ```
-qiime normalization-plugin normalize-relativefrequency-function --i-
-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
+qiime normalization-plugin normalize-relativefrequency-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
 ```
 
 To run the plugin and generate an normalized file with FREQUENCY type:
