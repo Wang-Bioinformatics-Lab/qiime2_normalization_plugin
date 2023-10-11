@@ -24,33 +24,21 @@ Then you can build the plugin with
 python setup.py install
 ```
 
-To run the plugin and generate an normalized file with RELATIVEFREQUENCY type:
+To run the plugin and generate an normalized file:
 
 ```
 qiime normalization-plugin normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact-relative data/relative_output.qza --o-output-artifact-frequency data/frequency_output.qza
 ```
-
-To run the plugin and generate an normalized file with FREQUENCY type:
-
-```
-qiime normalization-plugin normalize-frequency-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
-```
-
-Optionaly, if you want to use PQN_normalization  with RELATIVEFREQUENCY type:
-```
-qiime normalization-plugin PQN-normalize-relativefrequency-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
-```
-
-Optionaly, if you want to use PQN_normalization  with FREQUENCY type:
+Optionaly, if you want to use PQN_normalization:
 ```
 qiime normalization-plugin PQN-normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact-relative data/relative_output.qza --o-output-artifact-frequency data/frequency_output.qza
 ```
 ## Test
 
 
-Now you should have a file output.qza in ./data
+Now you should have a file relative_output.qza for RELATIVEFREQUENCY and frequency_output.qza for FREQUENCY in ./data
 
-You need to unzip the output.qza file, and get a folder with a lot of numbers and letters.
+You need to unzip the thes *output.qza file, and get a folder with a lot of numbers and letters.
 
 Go to that folder and go to data folder in it, you should see a file names feature-table.biom.
 
