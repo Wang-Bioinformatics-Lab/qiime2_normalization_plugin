@@ -27,11 +27,11 @@ python setup.py install
 To run the plugin and generate an normalized file:
 
 ```
-qiime normalization-plugin normalize-function   --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
+qiime normalization-plugin normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
 ```
 Optionaly, if you want to use PQN_normalization:
 ```
-qiime normalization-plugin normalize-function   --i-input-artifact data/qiime_table.qza --p-option 2 --o-output-artifact data/output.qza
+qiime normalization-plugin PQN_normalize-function --i-input-artifact data/qiime_table.qza --o-output-artifact data/output.qza
 ```
 ## Test
 
@@ -50,3 +50,10 @@ biom convert -i feature-table.biom -o feature-table.txt  --to-tsv
 
 
 open feature-table.txt and check if it has been normalized.
+
+
+## debug:
+uninstall:
+```
+pip uninstall qiime2_normalization-plugin
+```
