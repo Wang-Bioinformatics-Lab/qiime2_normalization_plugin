@@ -14,7 +14,7 @@ def normalize_function(input_artifact: biom.Table) -> biom.Table:
 plugin = qiime2.plugin.Plugin(
     name='normalization_plugin',
     version='0.1.0',
-    website='https://github.com/pluckySquid/~/qiime2_normalization_plugin.git',
+    website='https://github.com/pluckySquid/qiime2_normalization_plugin.git',
     package='qiime2_normalization_plugin',
     description='A QIIME 2 plugin for qiime2_normalization_plugin functions.',
     short_description='Plugin for qiime2_normalization_plugin analysis.',
